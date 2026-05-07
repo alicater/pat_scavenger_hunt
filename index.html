@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest of the Music Fraternities</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --bg-color: #f4f1ea;
+            --text-color: #333;
+            --accent-color: #c0392b; 
+        }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 2px solid var(--accent-color);
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        .step {
+            display: none; 
+        }
+        .step.active {
+            display: block; 
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #1a252f;
+        }
+        .path-btn {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            background-color: var(--accent-color);
+        }
+        .path-btn:hover {
+            background-color: #922b21;
+        }
+        .error-msg {
+            color: red;
+            font-style: italic;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div id="start" class="step active">
+        <h1>The Royal Summons</h1>
+        <p>You have been recruited by the King of Music for your acknowledged musical feats! You are tasked to save the Princess of Perfect Pitch from the Dragon of Bad Counterpoint!</p>
+        <p><strong>To obtain the location of your journey's beginning, enter the key that does not rise nor fall, for it is the beginning key of musicians all:</strong></p>
+        <input type="text" id="input-start" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('start', ['cmajor', 'c'], 'path-selection')">Submit</button>
+        <div id="error-start" class="error-msg"></div>
+    </div>
+
+    <div id="path-selection" class="step">
+        <h1>Choose Your Vocation</h1>
+        <p><em>You have entered the Key! As the gates open, select your designated path!</em></p>
+        <button class="path-btn" onclick="selectPath('p1-step1')">Path 1: The Piper</button>
+        <button class="path-btn" onclick="selectPath('p2-step1')">Path 2: The Troubadour</button>
+        <button class="path-btn" onclick="selectPath('p3-step1')">Path 3: The Poet</button>
+    </div>
+
+    <div id="p1-step1" class="step">
+        <h1>The Theory Dungeon (Piper)</h1>
+        <p>As the Piper, your melodies must be pure. Head to the <strong>Theory Classroom (B036)</strong>.</p>
+        <p>The Dragon has tainted a sacred chorale left in the room! Look upon the physical parchment. Identify the forbidden voice-leading motion hiding in the highlighted measure.</p>
+        <input type="text" id="input-p1-step1" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p1-step1', ['parallel5ths', 'parallelfifths', 'fifths', 'parallel5th'], 'p1-step2')">Submit</button>
+        <div id="error-p1-step1" class="error-msg"></div>
+    </div>
+
+    <div id="p1-step2" class="step">
+        <h1>The Echoing Caverns (Piper)</h1>
+        <p><em>Excellent! You have cleansed the manuscript. Make your way to the <strong>Second Floor Practice Room Hallway</strong>.</em></p>
+        <p>Your melody needs harmony. Find the symbol left on one of the doors. Identify the noble instrument that tunes to A=440 but reads the clef shown.</p>
+        <input type="text" id="input-p1-step2" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p1-step2', ['viola'], 'p1-step3')">Submit</button>
+        <div id="error-p1-step2" class="error-msg"></div>
+    </div>
+
+    <div id="p1-step3" class="step">
+        <h1>The Devil's Forge (Piper)</h1>
+        <p><em>The violists stand with you! Hurry to the <strong>Outdoor Fine Arts Courtyard</strong>.</em></p>
+        <p>To craft the weapon that will pierce the Dragon's armor, you must forge the 'Devil in Music'. Look at the notes guarded here. What is the exact name of this sinister interval?</p>
+        <input type="text" id="input-p1-step3" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p1-step3', ['tritone', 'augmented4th', 'augmentedfourth', 'diminished5th', 'diminishedfifth'], 'final-step')">Submit</button>
+        <div id="error-p1-step3" class="error-msg"></div>
+    </div>
+
+    <div id="p2-step1" class="step">
+        <h1>The Grand Foyer (Troubadour)</h1>
+        <p>As the Troubadour, your journey begins where the audience gathers. Head to the <strong>Main Lobby</strong>.</p>
+        <p>Find the Tempo Board left for you. To begin your trek, enter the Italian musical term for a 'walking pace'.</p>
+        <input type="text" id="input-p2-step1" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p2-step1', ['andante'], 'p2-step2')">Submit</button>
+        <div id="error-p2-step1" class="error-msg"></div>
+    </div>
+
+    <div id="p2-step2" class="step">
+        <h1>The Devil's Forge (Troubadour)</h1>
+        <p><em>Walk with purpose! The Dragon dropped a scale here. Go to the <strong>Outdoor Fine Arts Courtyard</strong>.</em></p>
+        <p>Look at the notes guarded in the courtyard. What is the exact name of this sinister interval?</p>
+        <input type="text" id="input-p2-step2" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p2-step2', ['tritone', 'augmented4th', 'augmentedfourth', 'diminished5th', 'diminishedfifth'], 'p2-step3')">Submit</button>
+        <div id="error-p2-step2" class="error-msg"></div>
+    </div>
+
+    <div id="p2-step3" class="step">
+        <h1>The Theory Dungeon (Troubadour)</h1>
+        <p><em>You have the weapon! Now outsmart the beast's logic! Rush to the <strong>Theory Classroom (B036)</strong>.</em></p>
+        <p>Identify the forbidden voice-leading motion hiding in the highlighted measure of the tainted chorale on the board.</p>
+        <input type="text" id="input-p2-step3" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p2-step3', ['parallel5ths', 'parallelfifths', 'fifths', 'parallel5th'], 'final-step')">Submit</button>
+        <div id="error-p2-step3" class="error-msg"></div>
+    </div>
+
+    <div id="p3-step1" class="step">
+        <h1>The Rhythmic Depths (Poet)</h1>
+        <p>As the Poet, rhythm is your weapon. Head to the <strong>Percussion Studio / Elevator Room</strong>.</p>
+        <p>Find the rhythmic dictate taped to the door. What two Sachs-hornbostel instrument classes rely on the unpitched clef shown?</p>
+        <input type="text" id="input-p3-step1" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p3-step1', [
+            'idiophonesandmembranophones', 'membranophonesandidiophones',
+            'idiophoneandmembranophone', 'membranophoneandidiophone',
+            'idiophonesmembranophones', 'membranophonesidiophones',
+            'idiophonemembranophone', 'membranophoneidiophone',
+            'idiophonesandmembranophone', 'idiophoneandmembranophones',
+            'membranophonesandidiophone', 'membranophoneandidiophones',
+            'idiophonesmembranophone', 'idiophonemembranophones',
+            'membranophonesidiophone', 'membranophoneidiophones'
+        ], 'p3-step2')">Submit</button>        
+        <div id="error-p3-step1" class="error-msg"></div>
+    </div>
+
+    <div id="p3-step2" class="step">
+        <h1>The Theory Dungeon (Poet)</h1>
+        <p><em>The beat is set, now correct the structure! Hurry to the <strong>Theory Classroom</strong>.</em></p>
+        <p>Identify the forbidden voice-leading motion hiding in the highlighted measure of the tainted chorale on the board.</p>
+        <input type="text" id="input-p3-step2" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p3-step2', ['parallel5ths', 'parallelfifths', 'fifths', 'parallel5th'], 'p3-step3')">Submit</button>
+        <div id="error-p3-step2" class="error-msg"></div>
+    </div>
+
+    <div id="p3-step3" class="step">
+        <h1>The Grand Foyer (Poet)</h1>
+        <p><em>The structure is sound! Spread the word to the masses. Go to the <strong>Main Lobby</strong>.</em></p>
+        <p>Find the Tempo Board. Enter the Italian musical term for a 'walking pace' to approach the beast steadily.</p>
+        <input type="text" id="input-p3-step3" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('p3-step3', ['andante'], 'final-step')">Submit</button>
+        <div id="error-p3-step3" class="error-msg"></div>
+    </div>
+
+    <div id="final-step" class="step">
+        <h1>The Final Battle</h1>
+        <p><em>Your path has prepared you. Rush to the <strong>Recital Hall doors</strong>!</em></p>
+        <p>The Dragon blocks the stage! Read the sign on the door. To banish him and free the Princess, you must play the 'Amen' cadence. What is the Roman Numeral analysis of this cadence?</p>
+        <input type="text" id="input-final-step" placeholder="Enter your answer...">
+        <br>
+        <button onclick="checkAnswer('final-step', ['ivi', 'iv1', '41', '4i'], 'victory')">Submit</button>
+        <div id="error-final-step" class="error-msg"></div>
+    </div>
+
+    <div id="victory" class="step">
+        <h1> VICTORY! </h1>
+        <p>The Dragon of Bad Counterpoint has been vanquished and the Princess of Perfect Pitch is safe!</p>
+        <p><strong>Head inside the Recital Hall to claim your reward and join the celebration!</strong></p>
+    </div>
+
+</div>
+
+<script>
+    // Routes users to their specific path
+    function selectPath(pathStartId) {
+        document.getElementById('path-selection').classList.remove('active');
+        document.getElementById(pathStartId).classList.add('active');
+    }
+
+    // Generic function to check answers and move to the next assigned ID
+    function checkAnswer(currentId, validAnswers, nextId) {
+        let rawInput = document.getElementById('input-' + currentId).value;
+        let normalizedInput = rawInput.toLowerCase().replace(/[^a-z0-9]/g, '');
+        
+        if (validAnswers.includes(normalizedInput)) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(nextId).classList.add('active');
+        } else {
+            document.getElementById('error-' + currentId).innerText = "Incorrect. The Dragon laughs at your attempt! Try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
